@@ -1,19 +1,17 @@
-<h3 class="d-flex justify-content-center">Телефонная книга</h3>
-
 <nav class="navbar navbar-expand-sm bg-light navbar-dark d-flex flex-row-reverse">
     <ul class="navbar-nav">
-        <button class="btn btn-primary">
+        <button class="btn btn-outline-primary">
             Экспорт
         </button>
     </ul>
     <ul class="navbar-nav">
-        <button class="btn btn-primary mr-2 me-2">
+        <button class="btn btn-outline-primary mr-2 me-2">
             Импорт
         </button>
     </ul>
     <ul class="navbar-nav me-2">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
         (click)="addClick()"
         data-backdrop="static" data-keyboard="false">
             Добавить контакт
@@ -36,7 +34,7 @@
     </ul>
 </nav>
 
-<table class="table">
+<table class="table table-light table-hover">
     <thead>
         <tr>
             <th>Имя</th>
@@ -46,7 +44,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let dataItem of PeopleList">
+        <tr *ngFor="let dataItem of PeopleList" class="shadow-sm">
             <td>{{dataItem.PersonFirstName}}
                 {{dataItem.PersonMiddleName}}
                 {{dataItem.PersonLastName}}
