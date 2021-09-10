@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using ContactListAPI.Models;
 
 namespace ContactListAPI.Controllers
 {
@@ -46,6 +47,44 @@ namespace ContactListAPI.Controllers
             return new JsonResult(table);
         }
 
+
+        [HttpPost]
+        public JsonResult Post(People person)
+        {
+
+            string query = @"
+                    insert into dbo.People 
+                    (PersonFirstName,PersonMiddleName,PersonLastName,PersonPhoneNumber, PersonAdress)
+                    values 
+                    (
+                    '" + person.PersonFirstName + @"'
+                    ,'" + person.PersonMiddleName + @"'
+                    ,'" + person.PersonLastName + @"'
+                    ,'" + person.PersonPhoneNumber + @"'
+                    ,'" + person.PersonAdress + @"'
+                    )
+                    ";
+
+
+
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Added Successfully");
+        }
 
 
 
