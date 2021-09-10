@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { PeopleComponent } from './people/people.component';
 import { ShowPeopleComponent } from './people/show-people/show-people.component';
 import { AddEditPeopleComponent } from './people/add-edit-people/add-edit-people.component';
+import { SharedService } from './shared.service';
+
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,9 +20,12 @@ import { AddEditPeopleComponent } from './people/add-edit-people/add-edit-people
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
