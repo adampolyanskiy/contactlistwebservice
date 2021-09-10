@@ -12,10 +12,11 @@
  }
 
  @media (max-width: 479px) {
-    .person-phone {
-        display: none !important;
-    }
-    .person-adress {
+    .person-phone,
+    .person-adress,
+    .th-phone,
+    .th-adress
+     {
         display: none !important;
     }
  }

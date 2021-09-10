@@ -1,4 +1,50 @@
+<h3 class="d-flex justify-content-center">Телефонная книга</h3>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-dark d-flex flex-row-reverse">
+    <ul class="navbar-nav">
+        <button class="btn btn-primary">
+            Экспорт
+        </button>
+    </ul>
+    <ul class="navbar-nav">
+        <button class="btn btn-primary mr-2 me-2">
+            Импорт
+        </button>
+    </ul>
+    <ul class="navbar-nav me-2">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        (click)="addClick()"
+        data-backdrop="static" data-keyboard="false">
+            Добавить контакт
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="closeClick()"></button>
+                </div>
+                <div class="modal-body ">
+                <app-add-edit-people [person]="person" *ngIf="ActiveAddEditPeopleComp"></app-add-edit-people>
+                </div>
+            </div>
+            </div>
+        </div>
+    </ul>
+</nav>
+
 <table class="table">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th class='th-phone'>Телефон</th>
+            <th class="th-adress">Адрес</th>
+            <th class="text-end">Опции</th>
+        </tr>
+    </thead>
     <tbody>
         <tr *ngFor="let dataItem of PeopleList">
             <td>{{dataItem.PersonFirstName}}
@@ -8,12 +54,16 @@
             <td class="person-phone">{{dataItem.PersonPhoneNumber}}</td>
             <td class="person-adress">{{dataItem.PersonAdress}}</td>
             <td class="person-utilities">
-                <i class="fas fa-edit fa-lg me-2"></i>
+                <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="editClick(dataItem)"
+                data-backdrop="static" data-keyboard="false"><i class="fas fa-edit fa-lg me-2"></i></button>
                 <i class="fas fa-trash-alt fa-lg"></i>
             </td>
             <td class="person-buttons d-flex flex-row-reverse pe-0">
                 <button type="button" class="btn btn-outline-secondary btn-sm">Удалить</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm me-1">Изменить</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="editClick(dataItem)"
+                data-backdrop="static" data-keyboard="false">Изменить</button>
             </td>
         </tr>
     </tbody>
