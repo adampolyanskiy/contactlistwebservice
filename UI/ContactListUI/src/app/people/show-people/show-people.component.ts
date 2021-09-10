@@ -41,12 +41,20 @@ export class ShowPeopleComponent implements OnInit {
     this.ActiveAddEditPeopleComp=true;
   }
 
+  deleteClick(item:any){
+    if(confirm("Вы уверены, что хотите удалить контакт?")){
+      this.service.deletePerson(item.PersonId).subscribe(data=>{
+        alert(data.toString());
+        this.refreshPeopleList();
+      })
+    }
+  }
+
   closeClick(){
     this.ActiveAddEditPeopleComp=false;
     this.refreshPeopleList();
   }
-
-
+  
   refreshPeopleList() {
     this.service.getPeopleList().subscribe(data => {
       this.PeopleList = data;

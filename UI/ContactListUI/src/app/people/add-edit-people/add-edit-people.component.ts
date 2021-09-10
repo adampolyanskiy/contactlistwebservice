@@ -55,5 +55,4 @@ export class AddEditPeopleComponent implements OnInit {
     });
   }
 
-
 };

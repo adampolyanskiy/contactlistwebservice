@@ -60,7 +60,8 @@
                 <i class="fas fa-trash-alt fa-lg"></i>
             </td>
             <td class="person-buttons d-flex flex-row-reverse pe-0">
-                <button type="button" class="btn btn-outline-secondary btn-sm">Удалить</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                (click)="deleteClick(dataItem)">Удалить</button>
                 <button type="button" class="btn btn-outline-secondary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 (click)="editClick(dataItem)"
                 data-backdrop="static" data-keyboard="false">Изменить</button>
