@@ -13,7 +13,7 @@ namespace ContactListAPI.Models
 
         public string PersonMiddleName { get; set;  }
 
-        public string PersonLastNam { get; set; }
+        public string PersonLastName { get; set; }
 
         public string PersonPhoneNumber { get; set; }
 
