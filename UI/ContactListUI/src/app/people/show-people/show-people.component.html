@@ -1,1 +1,20 @@
-<p>show-people works!</p>
+<table class="table">
+    <tbody>
+        <tr *ngFor="let dataItem of PeopleList">
+            <td>{{dataItem.PersonFirstName}}
+                {{dataItem.PersonMiddleName}}
+                {{dataItem.PersonLastName}}
+            </td>
+            <td class="person-phone">{{dataItem.PersonPhoneNumber}}</td>
+            <td class="person-adress">{{dataItem.PersonAdress}}</td>
+            <td class="person-utilities">
+                <i class="fas fa-edit fa-lg me-2"></i>
+                <i class="fas fa-trash-alt fa-lg"></i>
+            </td>
+            <td class="person-buttons d-flex flex-row-reverse pe-0">
+                <button type="button" class="btn btn-outline-secondary btn-sm">Удалить</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm me-1">Изменить</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

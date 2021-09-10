@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-show-people',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowPeopleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:SharedService) { }
 
   ngOnInit(): void {
+    this.refreshPeopleList();
+  }
+
+  PeopleList:any=[];
+
+  refreshPeopleList() {
+    this.service.getPeopleList().subscribe(data => {
+      this.PeopleList = data;
+    });
   }
 
 }

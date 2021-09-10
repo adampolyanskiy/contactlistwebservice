@@ -1,0 +1,21 @@
+@media (min-width: 992px) {
+    .person-utilities {
+        display: none !important;
+    }
+ }
+
+
+@media (max-width: 992px) {
+    .person-buttons {
+        display: none !important;
+    }
+ }
+
+ @media (max-width: 479px) {
+    .person-phone {
+        display: none !important;
+    }
+    .person-adress {
+        display: none !important;
+    }
+ }
