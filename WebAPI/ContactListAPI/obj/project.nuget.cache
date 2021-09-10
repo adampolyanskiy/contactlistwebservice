@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "xBayjbL+q1/kTpEwXu+1DnsqJXKInJv245Kz0ArOL9dCfGVwxa+ENFULvVUf8RmntzxkvzT4B/+AsaxA9W3iNw==",
+  "dgSpecHash": "1669cI1x9fba/zinprMADfYTAho9aj2lsyFZd4XRSCqAE0biMqH4W2c1auUO6h8XXy+xjl4qw7YeYPkE6DJ8wg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Adam\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.9\\microsoft.aspnetcore.jsonpatch.3.1.9.nupkg.sha512",
+    "C:\\Users\\Adam\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.9\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.9.nupkg.sha512",
+    "C:\\Users\\Adam\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Adam\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Adam\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
