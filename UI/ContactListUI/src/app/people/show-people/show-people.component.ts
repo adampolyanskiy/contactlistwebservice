@@ -19,6 +19,7 @@ export class ShowPeopleComponent implements OnInit {
 
   ModalTitle:string="";
   ActiveAddEditPeopleComp:boolean=false;
+  ActiveShowPersonComp:boolean=false;
   person:any;
 
 
@@ -53,6 +54,16 @@ export class ShowPeopleComponent implements OnInit {
   closeClick(){
     this.ActiveAddEditPeopleComp=false;
     this.refreshPeopleList();
+  }
+
+  closeShowClick(){
+    this.ActiveShowPersonComp=false;
+  }
+
+  showClick(item:any) {
+    this.person = item;
+    this.ModalTitle="Просмотр контакта";
+    this.ActiveShowPersonComp=true;
   }
   
   refreshPeopleList() {

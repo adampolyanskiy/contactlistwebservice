@@ -5,18 +5,27 @@
  }
 
 
-@media (max-width: 992px) {
-    .person-buttons {
+@media (max-width: 992px) and (min-width: 479px) {
+    .person-buttons,
+    .view-eye
+    {
         display: none !important;
     }
+    
+    
  }
 
  @media (max-width: 479px) {
     .person-phone,
     .person-adress,
     .th-phone,
-    .th-adress
+    .th-adress,
+    .person-buttons
      {
         display: none !important;
+    }
+
+    .view-eye {
+        display: inline-block;
     }
  }

@@ -10,13 +10,15 @@ import { SharedService } from './shared.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { ShowPersonComponent } from './people/show-person/show-person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PeopleComponent,
     ShowPeopleComponent,
-    AddEditPeopleComponent
+    AddEditPeopleComponent,
+    ShowPersonComponent
   ],
   imports: [
     BrowserModule,
