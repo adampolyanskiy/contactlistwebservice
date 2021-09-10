@@ -87,6 +87,38 @@ namespace ContactListAPI.Controllers
         }
 
 
+        [HttpPut]
+        public JsonResult Put(People person)
+        {
+            string query = @"
+                    update dbo.People set 
+                    PersonFirstName = '" + person.PersonFirstName + @"'
+                    ,PersonMiddleName = '" + person.PersonMiddleName + @"'
+                    ,PersonLastName = '" + person.PersonLastName + @"'
+                    ,PersonPhoneNumber = '" + person.PersonPhoneNumber + @"'
+                    ,PersonAdress = '" + person.PersonAdress + @"'
+                    where PersonId = " + person.PersonId + @" 
+                    ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult("Updated Successfully");
+        }
+
+
 
     }
 }
