@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using ContactListAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactListAPI.Controllers
 {
@@ -15,136 +16,214 @@ namespace ContactListAPI.Controllers
     [ApiController]
     public class PeopleController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
+        private readonly PeopleDbContext _context;
 
-        public PeopleController(IConfiguration configuration)
+        public PeopleController(PeopleDbContext context)
         {
-            _configuration = configuration;
+            _context = context;
         }
-
 
         [HttpGet]
-        public JsonResult Get()
+        public async Task<ActionResult<IEnumerable<People>>> GetPerson()
         {
-            string query = @"
-                    select PersonId, PersonFirstName, PersonMiddleName, PersonLastName, PersonPhoneNumber, PersonAdress  from dbo.People";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
+            return await _context.People.ToListAsync();
+        }
 
-                    myReader.Close();
-                    myCon.Close();
+        [HttpGet("{id}")]
+        public async Task<ActionResult<People>> GetPerson(int id)
+        {
+            var person = await _context.People.FindAsync(id);
+
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return person;
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutPerson(int id, People person)
+        {
+            if (id != person.PersonId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(person).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PersonExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
                 }
             }
 
-            return new JsonResult(table);
+            return NoContent();
         }
-
 
         [HttpPost]
-        public JsonResult Post(People person)
+        public async Task<ActionResult<People>> PostPerson(People person)
         {
+            _context.People.Add(person);
+            await _context.SaveChangesAsync();
 
-            string query = @"
-                    insert into dbo.People 
-                    (PersonFirstName,PersonMiddleName,PersonLastName,PersonPhoneNumber, PersonAdress)
-                    values 
-                    (
-                    '" + person.PersonFirstName + @"'
-                    ,'" + person.PersonMiddleName + @"'
-                    ,'" + person.PersonLastName + @"'
-                    ,'" + person.PersonPhoneNumber + @"'
-                    ,'" + person.PersonAdress + @"'
-                    )
-                    ";
-
-
-
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
-
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
-
-            return new JsonResult("Added Successfully");
+            return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
         }
-
-
-        [HttpPut]
-        public JsonResult Put(People person)
-        {
-            string query = @"
-                    update dbo.People set 
-                    PersonFirstName = '" + person.PersonFirstName + @"'
-                    ,PersonMiddleName = '" + person.PersonMiddleName + @"'
-                    ,PersonLastName = '" + person.PersonLastName + @"'
-                    ,PersonPhoneNumber = '" + person.PersonPhoneNumber + @"'
-                    ,PersonAdress = '" + person.PersonAdress + @"'
-                    where PersonId = " + person.PersonId + @" 
-                    ";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
-
-                    myReader.Close();
-                    myCon.Close();
-                }
-            }
-
-            return new JsonResult("Updated Successfully");
-        }
-
 
         [HttpDelete("{id}")]
-        public JsonResult Delete(int id)
+        public async Task<IActionResult> DeletePerson(int id)
         {
-            string query = @"
-                    delete from dbo.People
-                    where PersonId = " + id + @" 
-                    ";
-            DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
-            SqlDataReader myReader;
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            var person = await _context.People.FindAsync(id);
+            if (person == null)
             {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader); ;
-
-                    myReader.Close();
-                    myCon.Close();
-                }
+                return NotFound();
             }
 
-            return new JsonResult("Deleted Successfully");
+            _context.People.Remove(person);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
+        private bool PersonExists(int id)
+        {
+            return _context.People.Any(e => e.PersonId == id);
+        }
+
+
+        /*       [HttpGet]
+       public JsonResult Get()
+       {
+           string query = @"
+                   select PersonId, PersonFirstName, PersonMiddleName, PersonLastName, PersonPhoneNumber, PersonAdress  from dbo.People";
+           DataTable table = new DataTable();
+           string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
+           SqlDataReader myReader;
+           using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+           {
+               myCon.Open();
+               using (SqlCommand myCommand = new SqlCommand(query, myCon))
+               {
+                   myReader = myCommand.ExecuteReader();
+                   table.Load(myReader); ;
+
+                   myReader.Close();
+                   myCon.Close();
+               }
+           }
+
+           return new JsonResult(table);
+       }*/
+
+
+        /*
+                [HttpPost]
+                public JsonResult Post(People person)
+                {
+
+                    string query = @"
+                            insert into dbo.People 
+                            (PersonFirstName,PersonMiddleName,PersonLastName,PersonPhoneNumber, PersonAdress)
+                            values 
+                            (
+                            '" + person.PersonFirstName + @"'
+                            ,'" + person.PersonMiddleName + @"'
+                            ,'" + person.PersonLastName + @"'
+                            ,'" + person.PersonPhoneNumber + @"'
+                            ,'" + person.PersonAdress + @"'
+                            )
+                            ";
+
+
+
+                    DataTable table = new DataTable();
+                    string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
+                    SqlDataReader myReader;
+                    using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+                    {
+                        myCon.Open();
+                        using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                        {
+                            myReader = myCommand.ExecuteReader();
+                            table.Load(myReader); ;
+
+                            myReader.Close();
+                            myCon.Close();
+                        }
+                    }
+
+                    return new JsonResult("Added Successfully");
+                }*/
+
+
+        /*  [HttpPut]
+          public JsonResult Put(People person)
+          {
+              string query = @"
+                      update dbo.People set 
+                      PersonFirstName = '" + person.PersonFirstName + @"'
+                      ,PersonMiddleName = '" + person.PersonMiddleName + @"'
+                      ,PersonLastName = '" + person.PersonLastName + @"'
+                      ,PersonPhoneNumber = '" + person.PersonPhoneNumber + @"'
+                      ,PersonAdress = '" + person.PersonAdress + @"'
+                      where PersonId = " + person.PersonId + @" 
+                      ";
+              DataTable table = new DataTable();
+              string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
+              SqlDataReader myReader;
+              using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+              {
+                  myCon.Open();
+                  using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                  {
+                      myReader = myCommand.ExecuteReader();
+                      table.Load(myReader); ;
+
+                      myReader.Close();
+                      myCon.Close();
+                  }
+              }
+
+              return new JsonResult("Updated Successfully");
+          }
+
+
+          [HttpDelete("{id}")]
+          public JsonResult Delete(int id)
+          {
+              string query = @"
+                      delete from dbo.People
+                      where PersonId = " + id + @" 
+                      ";
+              DataTable table = new DataTable();
+              string sqlDataSource = _configuration.GetConnectionString("ContactListAppCon");
+              SqlDataReader myReader;
+              using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+              {
+                  myCon.Open();
+                  using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                  {
+                      myReader = myCommand.ExecuteReader();
+                      table.Load(myReader); ;
+
+                      myReader.Close();
+                      myCon.Close();
+                  }
+              }
+
+              return new JsonResult("Deleted Successfully");
+          }
+  */
 
     }
 }
