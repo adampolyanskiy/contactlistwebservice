@@ -15,15 +15,15 @@ export class SharedService {
   }
 
   addPerson(val:any){
-    return this.http.post(this.APIUrl+'/people',val);
+    return this.http.post(this.APIUrl+'/people',val, {responseType: 'text'});
   }
 
   updatePerson(val:any){
-    return this.http.put(this.APIUrl+'/people',val);
+    return this.http.put(this.APIUrl+'/people/' + val.PersonId, val, {responseType: 'text'});
   }
 
   deletePerson(val:any){
-    return this.http.delete(this.APIUrl+'/people/'+val);
+    return this.http.delete(this.APIUrl+'/people/'+val, {responseType: 'text'});
   }
 
 }

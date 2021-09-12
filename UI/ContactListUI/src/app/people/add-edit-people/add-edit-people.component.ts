@@ -29,12 +29,12 @@ export class AddEditPeopleComponent implements OnInit {
   }
 
   addPerson(){
-    var val = {PeronId:this.PersonId,
-      PersonFirstName:this.person.PersonFirstName,
-      PersonMiddleName:this.person.PersonMiddleName,
-      PersonLastName:this.person.PersonLastName,
-      PersonPhoneNumber:this.person.PersonPhoneNumber,
-      PersonAdress:this.person.PersonAdress
+    var val = {PersonId:this.PersonId,
+      PersonFirstName:this.PersonFirstName,
+      PersonMiddleName:this.PersonMiddleName,
+      PersonLastName:this.PersonLastName,
+      PersonPhoneNumber:this.PersonPhoneNumber,
+      PersonAdress:this.PersonAdress
       };
 
       this.service.addPerson(val).subscribe(res=>{
@@ -44,11 +44,11 @@ export class AddEditPeopleComponent implements OnInit {
 
   updatePerson(){
     var val = {PersonId:this.PersonId,
-              PersonFirstName:this.person.PersonFirstName,
-              PersonMiddleName:this.person.PersonMiddleName,
-              PersonLastName:this.person.PersonLastName,
-              PersonPhoneNumber:this.person.PersonPhoneNumber,
-              PersonAdress:this.person.PersonAdress
+              PersonFirstName:this.PersonFirstName,
+              PersonMiddleName:this.PersonMiddleName,
+              PersonLastName:this.PersonLastName,
+              PersonPhoneNumber:this.PersonPhoneNumber,
+              PersonAdress:this.PersonAdress
       }
     this.service.updatePerson(val).subscribe(res=>{
       alert(res.toString());

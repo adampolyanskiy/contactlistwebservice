@@ -68,7 +68,7 @@ namespace ContactListAPI.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Updated successful");
         }
 
         [HttpPost]
@@ -77,7 +77,7 @@ namespace ContactListAPI.Controllers
             _context.People.Add(person);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPerson", new { id = person.PersonId }, person);
+            return Ok("Added Successfully");
         }
 
         [HttpDelete("{id}")]
@@ -92,7 +92,7 @@ namespace ContactListAPI.Controllers
             _context.People.Remove(person);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok("Deleted successful");
         }
 
         private bool PersonExists(int id)
