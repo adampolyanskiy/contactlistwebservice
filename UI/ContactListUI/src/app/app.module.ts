@@ -11,6 +11,8 @@ import { SharedService } from './shared.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { ShowPersonComponent } from './people/show-person/show-person.component';
+import { UploadFileComponent } from './people/upload-file/upload-file.component';
+import { DownloadFileComponent } from './people/download-file/download-file.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ShowPersonComponent } from './people/show-person/show-person.component'
     PeopleComponent,
     ShowPeopleComponent,
     AddEditPeopleComponent,
-    ShowPersonComponent
+    ShowPersonComponent,
+    UploadFileComponent,
+    DownloadFileComponent,
   ],
   imports: [
     BrowserModule,

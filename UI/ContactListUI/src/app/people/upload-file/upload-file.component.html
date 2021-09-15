@@ -1,0 +1,6 @@
+<li class="nav-item">
+    <input type="file" #file placeholder="Выберете файл" (change)="uploadFile(file.files)" style="display: none;">
+    <button type="button" class="btn btn-outline-primary mr-2 me-2" (click)="file.click()">
+        Импорт
+    </button>
+</li>

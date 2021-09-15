@@ -26,4 +26,12 @@ export class SharedService {
     return this.http.delete(this.APIUrl+'/people/'+val, {responseType: 'text'});
   }
 
+  uploadFile(formData:any){
+    return this.http.post(this.APIUrl+'/csv', formData, {responseType: 'text'});
+  }
+
+  downloadFile() {
+    return this.http.get(this.APIUrl+'/csv', {responseType: 'blob'});
+  }
+
 }

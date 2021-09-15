@@ -1,36 +1,30 @@
-<nav class="navbar navbar-expand-sm bg-light navbar-dark d-flex flex-row-reverse">
-    <ul class="navbar-nav">
-        <button class="btn btn-outline-primary">
-            Экспорт
-        </button>
-    </ul>
-    <ul class="navbar-nav">
-        <button class="btn btn-outline-primary mr-2 me-2">
-            Импорт
-        </button>
-    </ul>
-    <ul class="navbar-nav me-2">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-        (click)="addClick()"
-        data-backdrop="static" data-keyboard="false">
-            Добавить контакт
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                (click)="closeClick()"></button>
+<nav class="navbar navbar-expand-sm bg-light" >
+    <ul class="navbar-nav m-0">
+        <li class="nav-item mb-2 me-2">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            (click)="addClick()"
+            data-backdrop="static" data-keyboard="false">
+                Добавить контакт
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeClick()"></button>
+                    </div>
+                    <div class="modal-body ">
+                    <app-add-edit-people [person]="person" *ngIf="ActiveAddEditPeopleComp"></app-add-edit-people>
+                    </div>
                 </div>
-                <div class="modal-body ">
-                <app-add-edit-people [person]="person" *ngIf="ActiveAddEditPeopleComp"></app-add-edit-people>
                 </div>
             </div>
-            </div>
-        </div>
+        </li>
+        <app-download-file class="mb-2 me-2"></app-download-file>
+        <app-upload-file></app-upload-file>
     </ul>
 </nav>
 
