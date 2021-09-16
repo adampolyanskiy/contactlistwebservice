@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\ContactListAPI.csproj": {}
+    "C:\\Users\\Adam\\Desktop\\proj\\contactlistwebservice\\WebAPI\\ContactListAPI\\ContactListAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\ContactListAPI.csproj": {
+    "C:\\Users\\Adam\\Desktop\\proj\\contactlistwebservice\\WebAPI\\ContactListAPI\\ContactListAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Adam\\Desktop\\proj\\contactlistwebservice\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
         "projectName": "ContactListAPI",
-        "projectPath": "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
+        "projectPath": "C:\\Users\\Adam\\Desktop\\proj\\contactlistwebservice\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
         "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\obj\\",
+        "outputPath": "C:\\Users\\Adam\\Desktop\\proj\\contactlistwebservice\\WebAPI\\ContactListAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3BUf5gcfzXdnT0x7PsyaQr701qw2AbN46Z9zGLcrgk3B5jIVFfm62q46ljCu8x68uCddmuFjFU0TrRObqaUgBg==",
+  "dgSpecHash": "r6BBbodop4Wq1bvZXGVpE4iGx+6wf0NvM0zbZxKBSEiJ1dYJHmHyFR1jT7ZIqjiJYLd5+cM/6r37nd83uD65UA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Adam\\Desktop\\ride-eye-proj\\new_proj\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
+  "projectFilePath": "C:\\Users\\Adam\\Desktop\\proj\\contactlistwebservice\\WebAPI\\ContactListAPI\\ContactListAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Adam\\.nuget\\packages\\csvhelper\\27.1.1\\csvhelper.27.1.1.nupkg.sha512",
     "C:\\Users\\Adam\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.9\\microsoft.aspnetcore.jsonpatch.3.1.9.nupkg.sha512",

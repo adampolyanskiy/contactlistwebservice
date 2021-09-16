@@ -65,12 +65,7 @@ namespace ContactListAPI.Controllers
 
                 await _context.SaveChangesAsync();
                 return Ok("Recieved successfuly.");
-
-
             }
-
-
-      
         }
 
         [HttpGet, Produces("text/csv")]
@@ -87,10 +82,5 @@ namespace ContactListAPI.Controllers
             stream.Position = 0;
             return File(stream, "text/csv", "contact_list.csv");
         }
-
-
     }
-
-
-   
 }

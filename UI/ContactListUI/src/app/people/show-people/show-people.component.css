@@ -4,15 +4,12 @@
     }
  }
 
-
 @media (max-width: 992px) and (min-width: 550px) {
     .person-buttons,
     .view-eye
     {
         display: none !important;
     }
-    
-    
  }
 
  @media (max-width: 550px) {

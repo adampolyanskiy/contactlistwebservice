@@ -22,7 +22,6 @@ export class ShowPeopleComponent implements OnInit {
   ActiveShowPersonComp:boolean=false;
   person:any;
 
-
   addClick(){
     this.person={
       PersonId:0,
@@ -65,15 +64,7 @@ export class ShowPeopleComponent implements OnInit {
     this.ModalTitle="Просмотр контакта";
     this.ActiveShowPersonComp=true;
   }
-
-  ExportCsvFile(){
-
-  }
-
-  ImportCsvFile(){
     
-  }
-  
   refreshPeopleList() {
     this.service.getPeopleList().subscribe(data => {
       this.PeopleList = data;
